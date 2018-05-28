@@ -137,7 +137,7 @@ pub fn build_header<'a>(number: u16, bytes: &[u8], last_option_number: &mut u16)
 macro_rules! option {
     // Opaque Type Options
     ($num: expr, $name: ident, opaque, $min: expr, $max: expr) => {
-        #[derive(PartialEq, Eq, Debug)]
+        #[derive(PartialEq, Eq, Debug, Clone)]
         pub struct $name {
             value: Vec<u8>
         }
@@ -185,7 +185,7 @@ macro_rules! option {
 
     // String Type Options
     ($num: expr, $name: ident, string, $min: expr, $max: expr) => {
-        #[derive(PartialEq, Eq, Debug)]
+        #[derive(PartialEq, Eq, Debug, Clone)]
         pub struct $name {
             pub value: String
         }
@@ -233,7 +233,7 @@ macro_rules! option {
 
     // Empty Type Options
     ($num: expr, $name: ident, empty, $min: expr, $max: expr) => {
-        #[derive(PartialEq, Eq, Debug)]
+        #[derive(PartialEq, Eq, Debug, Clone, Copy)]
         pub struct $name;
 
         impl Option for $name {
@@ -273,7 +273,7 @@ macro_rules! option {
 
     // UInt Type Options
     ($num: expr, $name: ident, uint, $min: expr, $max: expr) => {
-        #[derive(PartialEq, Eq, Debug)]
+        #[derive(PartialEq, Eq, Debug, Clone, Copy)]
         pub struct $name {
             value: u64
         }
