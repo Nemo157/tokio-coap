@@ -129,7 +129,7 @@ impl Client {
                 let client =  framed_socket
                     .send((msg, remote_addr))
                     .and_then(|sock| {
-                        let timeout_time = Instant::now() + Duration::from_millis(1000);
+                        let timeout_time = Instant::now() + Duration::from_millis(5000);
                         sock
                             .filter_map(|(msg, _addr)| {
                                 match msg.code {
